@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="js/vue.js"></script>
+</head>
+<style>
+    #active{
+        background: yellow;
+        padding: 5px;
+        color: #ffffff;
+    }
+</style>
+<body>
+    <div id="myvue">
+<!--        <input type="text" v-model="name">
+        {{name}}
+        <input type="text" v-model="age">
+        {{age}}-->
+        <span v-html="bold"></span>
+        <button v-bind:disabled="isButton">Submit</button>
+        <div v-bind:id="isId">gay</div>
+        {{number + 1}}
+    </div>
+</body>
+</html>
+<script>
+    let data = {name:'zhangsan',age:'18'};
+    let vue = new Vue({
+        el:'#myvue',
+        data:{
+            bold:'<b>bold</b>',
+            isButton:'false',
+            isId:'active',
+            number:'1',
+            lists:[1,2,3,4,5]
+        }
+/*        /////////生命周期钩子///////////////
+        beforeCreate: function () {
+            console.log('beforeCreate');
+            console.log(this.name);
+            console.log(this.age);
+        },
+        created: function(){
+            console.log('created');
+            console.log(this.name);
+            console.log(this.age);
+        }*/
+
+    });
+
+</script>

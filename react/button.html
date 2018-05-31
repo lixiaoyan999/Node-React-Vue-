@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<style>
+    .btn{
+        background:yellow;
+        border: none;
+        outline: none;
+        color: #fff;
+        padding: 6px 12px;
+        line-height: 1.5;
+        border-radius: 10px;
+        margin-right: 10px;
+    }
+    .btn-wanring{
+        background: antiquewhite;
+    }
+    .btn-info{
+        background: gold;
+        padding: 10px 12px;
+    }
+    .btn-small{
+        line-height: 2;
+    }
+    .btn-big{
+        line-height: 1;
+    }
+</style>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Button extends React.Component{
+            render(){
+                return <button className={'btn btn-'+this.props.type + ' btn-' + this.props.size}>button</button>
+            }
+        }
+
+        ReactDOM.render(
+            <div>
+                <Button type="wanring" size="small" />
+                <Button type="info" size="big"/>
+            </div>,
+
+            document.querySelector('#app'))
+    </script>
+</body>
+</html>

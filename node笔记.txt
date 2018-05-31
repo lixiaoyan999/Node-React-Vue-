@@ -1,0 +1,110 @@
+Nodejs （2018.3.26）
+
+浏览器有v8引擎,解析js  , Ryan Dahi 把   v8  搬到了后台,用于服务器软件
+
+超强的高并发   通过
+
+websocket 聊天
+
+commonjs是模块化的标准  Nodejs是模块化的实现
+
+module.exports == exports
+
+如果根目录没有,默认到node_modules下面找
+
+npm  node里面的包管理工具
+
+npm init --yes
+
+npm
+
+安装 npm install 
+
+卸载  npm uninstall
+
+查看  npm list
+
+查看某个包的信息  npm info jquery
+
+选择安装版本 npm install @+版本号
+
+生产环境--save没开发环境--save -dev ,默认生产环境(一直在用)
+
+-g 全局目录
+
+更新 npm update
+
+更新某一个包 npm install jquery @latest
+
+查看镜像  npm info express    ||      nrm ls
+
+安装镜像  npm install nrm -g
+
+跳转镜像  nrm use taobao
+
+追加数据
+
+    如果不存在,创建,如果有,追加数据
+    appendFileSync 异步的,追加数据,  路径 插入的值 [options] 回调函数
+    appendFile 同步的
+
+
+
+读取数据
+
+    读取
+    fs.readFile('./a.txt',(err,data)=>{
+      if(err) throw err;
+      console.log(data.tostring())
+    })
+
+重写数据
+
+    如果不存在,创建,如果有,重写数据
+    writeFile
+
+    let fs = require('fs');
+    
+    copy('./a.txt','./b.txt');
+    function copy(a,b){
+        let flag = fs.existsSync(a);
+        if(!flag){
+            fs.writeFileSync(a,'hello');
+        }
+        fs.readFile(a,(err,data)=>{
+            data = data.toString().toUpperCase();
+            if(err) throw err;
+            fs.writeFile(b,data,(err)=>{
+                if(err) throw err;
+                console.log('success');
+            });
+        })
+    }
+
+删除文件  unlink  
+
+rename  修改文件,目录名称
+
+mkdirSync 创建文件夹只能是一级一级
+
+remidSync  只能删除空文件夹
+
+
+通过readdir 获取 里面的文件,是数组  通过fs.statSync 获取类型
+
+------------------------------------------------------------------------------------
+
+Nodejs （2018.3.27）
+path:
+path.basename(filename)    	   返回最后一个目录名称
+process.env.PATH 		   返回全局路径
+process.env.PATH.split(path.delimiter)        返回对应的目录名称
+path.extname(path)                 返回扩展名
+path.format() 			   方法会从一个对象返回一个路径字符串
+path.parse()                       将路径格式化，拆分成一个对象
+path.isAbsolute()     		   判断路径是否是绝对路径(./ || ../ 都是相对路径)
+path.join([..paths])               将几个path片段，连接成一个字符串
+path.normalize() 		   格式化，标准路径
+path.relative('../static/images/index.js','../css/index.css')   两个path片段之间的联系,返回为:'../../css' 	   
+
+

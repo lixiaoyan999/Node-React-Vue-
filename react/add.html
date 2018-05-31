@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非受控组件加法</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Clock extends React.Component{
+            handleChangeA = (e) =>{
+                /*let a = this.refs.a.value * 1;
+                let b = this.refs.b.value * 1;
+                this.refs.result.value = a + b;*/
+                this.res.value = this.a.value * 1 + this.b.value * 1;
+            };
+            render(){
+                return <div  onChange={this.handleChangeA}>
+                    {/*<input type="text" ref="a" /> +
+                    <input type="text" ref="b" /> =
+                    <input type="text" ref="result"/>*/}
+                    <input type="text" ref={(a)=>this.a = a} /> +
+                    <input type="text" ref={(b)=>this.b = b} /> =
+                    <input type="text" ref={(res)=>this.res = res} />
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Clock />,
+            document.querySelector('#app')
+        )
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        let person = {name:'zhangsan',age:18,say:function () {
+                return this.name;
+            }};
+        function fn(user) {
+            if (user){
+                return <div>hello {user}</div>
+            }else{
+                return <div>zhangsan</div>
+            }
+        }
+        ReactDOM.render(
+            fn('小妹妹,让我们嗨起来好man'),
+            document.querySelector('#app')
+        );
+
+
+    </script>
+</body>
+</html>

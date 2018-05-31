@@ -1,0 +1,67 @@
+<%- include('template/header')%>
+<%-  include('template/left')%>
+<ul class="bread">
+    <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
+    <li><a href="##" id="a_leader_txt">网站信息</a></li>
+    <li><b>当前语言：</b><span style="color:red;">中文</php></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li>
+</ul>
+<div class="admin">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+        <div class="body-content">
+            <form method="post" class="form-x" action="/admin/info/updateadmin">
+                <div class="form-group">
+                    <div class="label">
+                        <label>网站标题：</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" name="title" value="<%= lists.title %>" >
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label>网站关键字：</label>
+                    </div>
+                    <div class="field">
+                        <textarea class="input" name="keywords" style="height:80px"><%= lists.keywords %></textarea>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label>网站描述：</label>
+                    </div>
+                    <div class="field">
+                        <textarea class="input" name="description"><%= lists.description %></textarea>
+                        <div class="tips"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label>联系人：</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" name="phonename" value="<%= lists.phonename %>" >
+                        <div class="tips"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="label">
+                        <label></label>
+                    </div>
+                    <div class="field">
+                        <button class="button bg-main icon-check-square-o" type="submit"> 修改</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div style="text-align:center;">
+    <p>来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+</div>
+</body>
+</html>

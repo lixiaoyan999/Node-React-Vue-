@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header" style="padding-left: 500px;">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" v-model="msg" @keydown="insert($event)">
+                    </div>
+                    <button type="button" class="btn btn-default" @click="add">Submit</button>
+                </form>
+            </div>
+        </nav>
+        <div class="row" style="padding-left: 500px">
+            <h3>未完成<span class="badge" style="margin-left: 10px;">{{doing.length}}</span></h3>
+            <div class="col-lg-6">
+                <div class="input-group" v-for="(dlist,i) in doing">
+                    <span class="input-group-addon">
+                        <input type="checkbox" aria-label="" v-model="dlist.status">
+                    </span>
+                        <input type="text" class="form-control"  v-model="dlist.contents">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default glyphicon glyphicon-remove" type="button" @click="remove(dlist.id)"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-left: 500px">
+            <h3>已完成<span class="badge" style="margin-left: 10px;">{{dos.length}}</span></h3>
+            <div class="col-lg-6">
+                <div class="input-group" v-for="(list,i) in dos">
+                    <span class="input-group-addon">
+                        <input type="checkbox" v-model="list.status">
+                    </span>
+                    <input type="text" class="form-control" v-model="list.contents">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default glyphicon glyphicon-remove" type="button" @click="remove(list.id)"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div id="app">
+        <h2>已完成的任务({{doing.length}})</h2>
+        <ul>
+            <li v-for="list in doing">
+                {{list.contents}}
+            </li>
+        </ul>
+        <h2>未完成的任务({{dos.length}})</h2>
+        <ol>
+            <li v-for="list in dos">
+                {{list.contents}}
+            </li>
+        </ol>
+    </div>-->
+</body>
+<script>
+/*        let data = [
+            {id:1,contents:'交作业',status:false},
+            {id:2,contents:'进行模拟面试',status:false},
+            {id:3,contents:'写日报',status:true},
+            {id:4,contents:'钉钉打卡',status:true},
+            {id:5,contents:'打印表格',status:false}
+        ];
+        localStorage.setItem('todolist',JSON.stringify(data));*/
+    let vue = new Vue({
+        el:'#app',
+        data:{
+            msg:'',
+            lists:'',
+        },
+        computed:{
+            todolist:function () {
+                let todo = {doing:[],dos:[]};
+                todo.doing = this.lists.filter(element=>!element.status);
+                todo.dos = this.lists.filter(element=>element.status);
+                return todo;
+            },
+            doing: function () {
+                return this.lists.filter(element=>!element.status);
+            },
+            dos: function () {
+                return this.lists.filter(element=>element.status);
+            }
+        },
+        methods:{
+            add: function () {
+                let obj = {id:this.lists.length+1,contents:this.msg,status:false};
+                this.lists.push(obj);
+                localStorage.setItem('todolist',JSON.stringify(this.lists));
+            },
+            remove: function (i) {
+                this.lists = this.lists.filter(ele=>i!=ele.id);
+                localStorage.setItem('todolist',JSON.stringify(this.lists));
+            },
+            insert: function(event){
+                let kewcode = event.keyCode;
+                if(kewcode === 13){
+                    this.add();
+                }
+            },
+        },
+        created:function () {
+            this.lists=JSON.parse(localStorage.getItem('todolist'));
+        },
+
+        //////////////////////////监听//////////////////////////////
+        watch:{
+            lists: {
+                handler:function () {
+                    localStorage.setItem('todolist',JSON.stringify(this.lists));
+                },
+                deep:true,
+            }
+        }
+    })
+</script>

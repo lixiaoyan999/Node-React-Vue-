@@ -1,0 +1,60 @@
+qq:D:\Bin\QQScLauncher.exe
+微信：D:\WeChat\WeChat.exe
+网易云：D:\CloudMusic\cloudmusic.exe
+360浏览器：D:\360Chrome\Chrome\Application\360chrome.exe
+2345看图王：D:\2345Pic\2345Pic.exe
+AI："C:\Program Files\Adobe\Adobe Illustrator CC 2017\Support Files\Contents\Windows\Illustrator.exe"
+谷歌：自己下载
+xm:自己下载
+火狐：自己下载
+PS：E:\优逸客\软件\photoshopcc_44249\Photoshop.exe
+pp助手："C:\Program Files (x86)\PP助手5.0\pphelper5.exe"
+sublime:"E:\优逸客\软件\安装软件\Sublime Text 3 优化版\sublime_text.exe"
+Typora:D:\Typora\Typora.exe
+XMind8:E:\优逸客\软件\XMind\XMind.exe
+百度网盘：C:\Users\lixiaoyannpc\AppData\Roaming\baidu\BaiduNetdisk\BaiduNetdisk.exe
+2345好压：D:\Haozip\HaoZip.exe
+火绒：D:\Huorong\Sysdiag\bin\HipsMain.exe
+迅雷："C:\Program Files (x86)\Thunder Network\Thunder9\Program\Thunder.exe" -StartType:DesktopIcon
+
+phpstrom破解码:http://www.0-php.com:1017
+
+-----------------------------------------------------------------------------------------------------------
+
+网址：
+聚合数据代码分享平台:https://code.juhe.cn/
+webstrom常用快捷键https://blog.csdn.net/quincylk/article/details/18256697
+bebel(解决移动端app适配问题es6转es5):https://babel.bootcss.com/
+微软Bing搜索：https://cn.bing.com/?toHttps=1&redig=B026938795EF4E99979B37A536C9AC73
+MDN Web文档：https://developer.mozilla.org/zh-CN/
+GitHub:https://github.com/
+git文件过大:https://blog.csdn.net/u012637258/article/details/52278226
+Iconfont阿里巴巴矢量图:http://www.iconfont.cn/
+ProcessOn-我的文件:https://www.processon.com/;jsessionid=F4235F2591CF03D1E643790B3D4029EB.jvm1
+颜色代表大全:http://www.5tu.cn/colors/yansebiao.html
+es6阮一峰博客:http://es6.ruanyifeng.com/#docs/intro
+JQuery中文文档:http://jquery.cuishifeng.cn/index.html
+zepto(移动端js):http://www.css88.com/doc/zeptojs_api/
+安装Sass:https://www.sass.hk/install/
+Bootstrap中文网:http://www.bootcss.com/
+网站模板:http://www.templatesy.com/
+swiper中文网:http://www.swiper.com.cn/
+前端性能优化归纳:https://blog.csdn.net/grandpang/article/details/51329289
+PHP文档(W3school)：http://www.w3school.com.cn/php/php_string.asp
+php:http://php.hnz.kim/
+百度云:https://cloud.baidu.com/?from=console
+smarty:https://www.smarty.net/docs/zh_CN/
+ueditor:http://ueditor.baidu.com/website/index.html
+vue:https://cn.vuejs.org/
+Element框架:http://element-cn.eleme.io/#/zh-CN
+npm:https://www.npmjs.com/
+使用npm上传npm包:https://www.cnblogs.com/cnlg123/p/7678128.html
+Express开发框架:http://www.expressjs.com.cn/
+React：http://www.css88.com/react/
+React生命周期:https://www.race604.com/react-native-component-lifecycle/
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Clock extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    // date:new Date()
+                    number:10
+            };
+            }
+            /*render(){
+                return <div>
+                    <p>
+                         {this.state.date.toLocaleTimeString()}
+                    </p>
+                </div>
+            }*/
+            render(){
+                return <div>
+                    <p>
+                        {this.state.number}
+                    </p>
+                </div>
+            }
+            componentDidMount() {
+/*                setInterval(function (obj) {
+                    obj.setState({
+                        date:new Date()
+                    })
+                },1000,this)*/
+                setInterval(()=>{
+                    this.setState(
+                        function(oldv,props){
+                            return {number:oldv.number+props.plus}
+                        }
+                    )
+                },1000)
+            }
+        }
+        ReactDOM.render(<Clock plus={3}/>,document.querySelector('#app'));
+    </script>
+</body>
+</html>

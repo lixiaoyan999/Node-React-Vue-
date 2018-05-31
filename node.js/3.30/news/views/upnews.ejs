@@ -1,0 +1,111 @@
+<%-  include('template/header')%>
+<%-  include('template/left')%>
+<div class="admin">
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+    <div class="body-content">
+      <form method="post" class="form-x" action="/admin/news/updatenews">
+        <div class="form-group">
+          <div class="label">
+            <label>所属栏目：</label>
+          </div>
+          <div class="field">
+            <select name="cid" class="input w50">
+              <% for(let i = 0;i < cate.length;i++) { %>
+              <option value="<%= cate[i]['cid'] %>">
+                <%= cate[i]['cname'] %>
+              </option>
+              <% } %>
+            </select>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+            <input type="hidden" class="input" name="nid" value="<%= lists['nid']%>">
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>新闻标题：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="ntitle" value="<%= lists['ntitle']%>" >
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>新闻图片：</label>
+          </div>
+          <div class="field">
+              <input type="text" id="url1" name="nimage" class="input tips" style="width:25%; float:left;"  value=""  data-toggle="hover" data-place="right" data-image="" />
+            <input type="file" id="exampleInputFile" name="file">
+            <div style="width:100px;float:left;margin:0 20px;height: 100px;">
+              <img src="<%= lists['nimage']%>" alt=""  id ="IMG" style="width: 100px;height: 100px;">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>新闻内容：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="ncontent" value="<%= lists['ncontent']%>" >
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>新闻描述：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="ndesc" value="<%= lists['ndesc']%>">
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>发布时间：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="ndate" value="<%= lists['ndate']%>">
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label></label>
+          </div>
+          <div class="field">
+            <button class="button bg-main icon-check-square-o" type="submit"> 立即修改</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+    $(function () {
+        let filebtn = $('input:file');
+        let img = $('#IMG');
+        filebtn.on('change',function (e) {
+            let files = this.files[0];
+            let formdata = new FormData();
+            formdata.append('file',files);
+            $.ajax('/uploadimg',{
+                type:'post',
+                data:formdata,
+                context:this,
+                processData:false,
+                contentType:false,
+                success:function (data) {
+                    $(this).prev('input').val(data);
+                    img.attr('src',data);
+                }
+            })
+        });
+    })
+</script>
+

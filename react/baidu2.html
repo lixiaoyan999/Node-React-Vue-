@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度(非控组件)</title>
+    <link rel="stylesheet" href="./js/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        /*
+        * http://www.baidu.com/su?wd=a&cb=aa  返回的是一个函数aa({})
+        * input值发生改变=>触发事件=>值=>获取数据=>lists
+        * */
+        class Message extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    lists:[],
+                    index:-1
+                }
+            }
+            handleChange=(e)=>{
+                let value = e.target.value;
+                this.setState({value:value});
+                $.ajax({
+                    url:'http://www.baidu.com/su?wd=' + value,
+                    dataType:'jsonp',
+                    jsonp:'cb',
+                    context:this,
+                    success:function (data) {
+                        this.setState({
+                            lists:data.s
+                        })
+                    }
+                })
+            };
+            handleKeyDown=(e)=>{
+                let keycode = e.keyCode;
+                let index = this.state.index;
+                let lists = this.state.lists.length;
+                    if(keycode === 38){
+                       if(index <= 0){
+                           index=lists
+                        }
+                        this.setState({
+                            index:index-1,
+                        },()=>{this.a.value = this.state.lists[this.state.index]})
+                    }else if(keycode === 40){
+                        if(index >= lists){
+                            index=0
+                        }
+                        this.setState({
+                            index:index+1
+                        },()=>{this.a.value = this.state.lists[this.state.index]})
+                    }else if(keycode === 8){
+                        this.setState({
+                            index:-1
+                        })
+                    }else if(keycode === 13){
+                        let value = e.target.value;
+                        location.href = 'https://www.baidu.com/s?wd='+value
+                    }
+            };
+
+            render(){
+                return <div className="container">
+                    <div className="row">
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <input type="text" ref={(a)=>this.a=(a)} className="form-control" onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
+                            </div>
+                            <div className="panel-body">
+                                <ul className="list-group">
+                                    {
+                                        this.state.lists.map((lists,index)=>
+                                            <li className={"list-group-item" + (index === this.state.index?' active':'')} key={index}>{lists}</li>
+                                        )
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Message />,
+            document.querySelector('#app')
+        )
+    </script>
+</body>
+</html>

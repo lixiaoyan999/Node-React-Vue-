@@ -1,0 +1,22 @@
+.fotter{
+    width: 100%;
+    background: #303435;
+    line-height: 45px;
+    text-align: center;
+    font-size: 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.fotter > a{
+    display: block;
+    color: #FFFFFF;
+    width: 50%;
+}
+.fotter a:first-child{
+    border-right: 1px solid #FFFFFF;
+}

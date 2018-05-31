@@ -1,0 +1,10 @@
+button{
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    background: aquamarine;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    color: bisque;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React留言板(状态提升)</title>
+    <link rel="stylesheet" href="./js/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Message extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    lists:[]
+                }
+
+            }
+
+            addMessage=(message)=>{
+                let messages = [...this.state.lists,message];
+                this.setState({
+                    lists:messages
+                })
+            };
+            delMessage=(index)=>{
+                this.state.lists.splice(index,1);
+                this.setState({
+                    lists:[...this.state.lists]
+                })
+            };
+
+            render(){
+                return <div className="container">
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2">
+                            <div className="panel panel-default">
+                                <div className="panel-heading">
+                                    <h3 className="text-center">React留言板</h3>
+                                </div>
+
+                                <div className="panel-body">
+                                        <MessageList lists={this.state.lists} delMessage={this.delMessage}/>
+                                </div>
+                                <div className="panel-footer">
+                                    <MessageForm addMessage={this.addMessage}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        class MessageList extends React.Component{
+            del=(index,e)=>{
+                this.props.delMessage(index)
+            };
+            render(){
+                return(
+                    <ul className="list-group">
+                        {
+                            this.props.lists.map((item, index) => (
+                                <li className="list-group-item" key={index}>
+                                    <span className="pull-left">{item.username}</span>
+                                    <i className="glyphicon glyphicon-remove pull-right" style={{display:'block',background:'yellow' ,borderRadius:'50px' ,color:'red',marginLeft:'10px'}} onClick={(ele)=>this.del(index,ele)}> </i>
+                                    <span className="pull-right">{item.time}</span>
+                                    <hr/>
+                                    {item.content}
+                                </li>
+                        ))
+                        }
+                    </ul>
+                )
+            }
+        }
+        class MessageForm extends React.Component{
+            handleSubmit=(e)=>{
+                e.preventDefault();  //组织页面跳转
+                let username = this.username.value;
+                let content = this.content.value;
+                let time = new Date().toLocaleTimeString();
+                this.props.addMessage({username,content,time});
+                this.username.value='';
+                this.content.value='';
+            };
+            render(){
+                return(
+                    <form className="form-horizontal clearfix" onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="inputEmail3" className="col-sm-2 control-label">用户名:</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control" id="inputEmail3" placeholder="username" ref={(input)=>this.username = input}/>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="inputEmail3" className="col-sm-2 control-label">内容:</label>
+                            <div className="col-sm-10">
+                                <textarea className="form-control" id="exampleInputPassword1" placeholder="请输入内容" ref={(textarea)=>this.content=(textarea)}/>
+                            </div>
+                        </div>
+                        <button  className="btn btn-default pull-right">Submit</button>
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Message />,
+            document.querySelector('#app')
+        )
+    </script>
+</body>
+</html>

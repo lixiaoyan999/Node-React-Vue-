@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+<!--        <my-component></my-component>
+        <my-child></my-child>-->
+        <table>
+            <tr is="my-child"></tr>
+            <tr is="my-child"></tr>
+            <tr is="my-child"></tr>
+        </table>
+
+    </div>
+    <hr>
+    <div id="toggle">
+        <my-son></my-son>
+        <my-demo></my-demo>
+    </div>
+</body>
+<script type="text/x-template" id="my-demo">
+    <span>la la la la la</span>
+</script>
+<script>
+    Vue.component('my-component',{
+        template:'<nav>这是一个导航组件</nav>'
+    });
+    var child = {
+        template:'<div>ASDFFGHJK</div>'
+    };
+    var son = {
+        template:'<h2>这是一个局域性的组件</h2>'
+    };
+    new Vue({
+       el:'#app',
+        components:{
+            'my-child':child,
+        }
+    });
+    new Vue({
+        el:'#toggle',
+        components:{
+            'my-son':son,
+            'my-demo':{
+                template:'#my-demo'
+            }
+        }
+    })
+</script>
+</html>

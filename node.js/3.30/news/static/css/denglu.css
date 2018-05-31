@@ -1,0 +1,103 @@
+*{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-size: 0.12rem;
+}
+img{
+	display: block;
+}
+input{
+	border: 0;
+	display: block;
+}
+a{	color:#000;
+	text-decoration: none;
+}
+a:hover{
+	-webkit-tap-highlight-color: transparent;
+}
+/* 未登录开始 */
+.dl-top{
+	width: auto;
+	height: 1.5rem;
+	padding: 0  0.36rem ;
+	font-size: 0.34rem;
+}
+.dl-top .left{
+	display: block;
+	float: left;
+	width: 33.33%;
+	color: #BBBBBB;
+	font-size: 0.5rem;
+	line-height: 1.5rem;
+}
+.dl-top .center{
+	width:33.33%;
+	line-height: 1.5rem;
+	float: left;
+	font-size: 0.56rem;
+	text-align: center; 
+}
+.dl-top .right{
+	display: block;
+	float: right;
+	width: 33.33%;
+	color: #BBBBBB;
+	font-size: 0.28rem;
+	line-height: 1.5rem;
+	text-align: right;
+}
+input[type="text"]{
+	width: 88%;
+	height: 1rem;
+    outline: none;
+    color: #bbb;
+    font-size: 0.32rem;
+    width: 88%;
+	margin: 1.8rem auto 0;
+    border-bottom: 0.02rem solid #bbb;
+}
+input[type="password"]{
+	width: 88%;
+	height:1rem;
+    outline: none;
+    color: #bbb;
+    margin: 0 auto;
+    font-size: 0.32rem;
+    border-bottom: 0.02rem solid #bbb;
+}
+.tiaozhuan{
+	display: block;
+}
+input[type="submit"]{
+	width: 88%;
+	height: 1.1rem;
+    outline: none;
+    margin: 1rem auto 0;
+    border-bottom: 0.02rem solid #bbb;
+    font-size: 0.32rem;
+    text-align: center;
+	border-radius: 0.1rem;
+	background: #B4282D;
+	color: #C66A6B;
+}
+.last{
+	width: 88%;
+	height: 1.4rem;
+	margin: 0 auto ;
+	line-height: 1.5rem;
+}
+.zhleft{
+	display:block;
+	float: left;
+	font-size: 0.3rem;
+	color: #7F7F7F;
+}
+.zhright{
+	display:block;
+	float: right;
+	font-size: 0.3rem;
+	color: #7F7F7F;
+}
+/* 未登录结束 */

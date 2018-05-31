@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域的解决方式</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <input type="text">
+    <ul></ul>
+    <script>
+        let uls = document.querySelector('ul');
+        let input = document.querySelector('input');
+        //当input的内容发生变化时跨域
+        input.oninput = function (ele) {
+            let script = document.createElement('script');
+            script.src = `http://www.baidu.com/su?wd=${this.value}&cb=callback`;
+            document.body.appendChild(script);
+        };
+        function callback(data) {
+            let str = '';
+            console.log(data);
+            data.s.forEach(ele=>{
+                str += `<li>${ele}</li>`
+            });
+            uls.innerHTML = str;
+        }
+    </script>
+</body>
+</html>

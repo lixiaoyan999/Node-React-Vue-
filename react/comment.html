@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <link rel="stylesheet" href="./js/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class PanelHead extends React.Component{
+            render(){
+                return <div className="panel panel-heading">头部</div>
+            }
+        }
+        class PanelBody extends React.Component{
+            render(){
+                return <div className="panel-body">内容</div>
+            }
+        }
+        class PanelFotter extends React.Component{
+            render(){
+                return <div className="panel-footer">底部</div>
+            }
+        }
+        class Panel extends React.Component{
+            render(){
+                return <div className={'panel panel-' + this.props.type}>
+                    <PanelHead />
+                    <PanelBody />
+                    <PanelFotter/>
+                </div>
+            }
+        }
+
+        ReactDOM.render(
+            <div>
+                <Panel type="primary"/>
+                <Panel type="success"/>
+                <Panel type="info"/>
+            </div>,
+            document.querySelector('#app'))
+    </script>
+</body>
+</html>

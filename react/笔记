@@ -1,0 +1,40 @@
+rect:是构建页面的一个库。有一个轻量级的虚拟DOM。diff
+给页面添加元素:
+原生js写法:
+1.创建元素let div = React.createElement('div',{className},['hello']);
+2.渲染元素到页面ReactDOM.render(div,document.querySelector('#app'))
+JSX:
+引入babel,script的type属性改为text/babel;
+创建元素:let person = {name:'zhangsan',age:18,say:function(){return this.name}};
+        let div = <div>
+                        <p>
+                            姓名:{person.name}
+                        </p>
+                   </div>
+
+生命周期：props：属性  ||  state ：状态
+        第一阶段：
+                getDefaultProps(创建组建之前调用)
+                            ||
+                componentWillMount(加载之前调用)
+                            ||
+                        render(渲染挂载,创建虚拟DOM)
+                            ||
+                componentDidMount(组件加载完成)
+
+        第二阶段：
+                  componentWillReceiveProps(nextProps)(组件接收到新props时调用)
+                            ||
+                  shouldComponentUpdate(nextProps,nextState)/(状态应该更新){
+                  返回一个布尔值:
+                  返回true时componentWillUpdate(状态将要更新)=>render(更新渲染)=>componentDidUpdate(prevProps,prevState)(更新完毕)
+
+        第三阶段:  返回false时componentWillUnmount(组件被移除之前被调用|状态改变，页面没有改变)
+                  ReactDOM.UnmountComponentAtNode(document.querySelector('')):卸载组件
+                  }
+
+创建百度样式:
+1.参考文档中列表和键
+2.遍历
+
+

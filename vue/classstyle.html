@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<style>
+    .color{
+        color: gold;
+    }
+    .background{
+        background: antiquewhite;
+    }
+    .right{
+        text-align: right;
+    }
+</style>
+<body>
+    <div id="app">
+        <!--<h2 v-bind:class="color">H2</h2>-->
+        <!--<h2 v-bind:class="{color:flag}" @click="{color:flag=!flag}">H2</h2>-->
+        <!--<h2 v-bind:class="{color:flag}" @click="{add}">H2</h2>-->
+        <!--<h2 :class="{color:color,background:background}" >H2</h2>-->
+        <!--<h2 :class="[color,background]">h2</h2>-->
+        <!--<h2 :class="[flag?color:'',background]">h2</h2>-->
+        <!--<h2 :style="styleObj">h2</h2>-->
+        <button @click="isshow=!isshow">isshow</button>
+        <h2 :class="classObj" v-if="isshow">h2</h2>
+        <h1 v-else>h1</h1>
+    </div>
+</body>
+<script>
+    let vue = new Vue({
+        el:'#app',
+        data:{
+            color:'color',
+            background:'background',
+            flag:true,
+            active:true,
+            isshow:false,
+            width:'300px',
+            blue:'blue',
+            classObj:{
+                color: true,
+                background:true,
+            },
+
+            styleObj:{
+                color:'gold',
+                background:'antiquewhite',
+                textAlign:'right',
+            },
+            methods:{
+                add(){
+                    this.flag = !this.flag;
+                }
+            },
+        }
+
+    })
+</script>
+</html>
+

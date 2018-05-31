@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>受控组建加法</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Input extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    val : 'hello',
+                    a:0,
+                    b:0,
+                    result: 0
+                }
+            }
+            handleChange = (e) =>{
+                let value = e.target.value;
+                this.setState ({
+                    val: value
+                })
+            };
+            handleChangeA = (e) =>{
+                let a = e.target.value*1;
+                let b = this.state.b;
+                this.setState ({
+                    a,
+                    result:a + b
+                })
+            };
+            handleChangeB = (e) =>{
+                let b = e.target.value*1;
+                let a = this.state.a;
+                this.setState ({
+                    b,
+                    result:a + b
+                })
+            };
+            render(){
+                return <div>
+                    <p>
+                        表达的内容为：{this.state.val}
+                    </p>
+                    <input type="text" value={this.state.val} onChange={this.handleChange} />
+                    <br/><br/><br/>
+                    <input type="text" value={this.state.a} onChange={this.handleChangeA} /> +
+                    <input type="text" value={this.state.b} onChange={this.handleChangeB} /> =
+                    <input type="text" value={this.state.result}/>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Input />,
+            document.querySelector('#app')
+        )
+
+    </script>
+</body>
+
+
+</html>

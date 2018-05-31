@@ -1,0 +1,5 @@
+配置
+    1.引入 express ,ejs , mysql , body-parser ,
+    2.设置app.set以及托管静态文件,设置post头信息和json
+    3.连接数据库
+    4.登陆(login),通过post(req.body)跳转到admin(引入template)进行查看修改

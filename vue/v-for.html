@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="id" v-model="person.id">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputName3" placeholder="name" v-model="person.name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputName4" placeholder="sex" v-model="person.sex">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputName5" placeholder="age" v-model="person.age">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputName6" placeholder="ctiy" v-model="person.ctiy">
+            </div>
+            <button type="button" class="btn btn-default" v-on:click="students.push(person)">添加</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>意向城市</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(student,index) in students">
+                    <td>
+                        {{student.id}}
+                    </td>
+                    <td>
+                        {{student.name}}
+                    </td>
+                    <td>
+                        {{student.sex}}
+                    </td>
+                    <td>
+                        {{student.age}}
+                    </td>
+                    <td>
+                        {{student.ctiy}}
+                    </td>
+                    <td>
+                        <button @click="students.splice(index,1)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let vue = new Vue({
+            el:'#app',
+            data:{
+                person:{},
+                students: [
+                    {id:1,name:'郭佳杰',sex:'男',age:18,ctiy:'太原'},
+                    {id:2,name:'李春刚',sex:'男',age:18,ctiy:'哈尔滨'},
+                    {id:3,name:'马骏驰',sex:'男',age:18,ctiy:'上海'},
+                    {id:4,name:'武子厚',sex:'男',age:18,ctiy:'吉林'},
+                    {id:5,name:'李小妍',sex:'男',age:18,ctiy:'大理'},
+                ]
+            },
+            methods:{
+                remove:function () {
+                    alert(1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

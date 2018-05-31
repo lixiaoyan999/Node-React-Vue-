@@ -1,0 +1,47 @@
+<%-  include('template/header')%>
+<%-  include('template/left')%>
+<ul class="bread">
+  <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
+  <li><a href="##" id="a_leader_txt">网站信息</a></li>
+  <li><b>当前语言：</b><span style="color:red;">中文</php></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li>
+</ul>
+<div class="admin">
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 网站列表</strong></div>
+    <div class="padding border-bottom">
+      <button type="button" class="button border-yellow" onclick="window.location.href='/admin/cate/webadd'"><span class="icon-plus-square-o"></span> 添加网站</button>
+    </div>
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="5%">ID</th>
+        <th width="15%">分类</th>
+        <th width="15%">icon</th>
+        <th width="15%">类名</th>
+        <th width="10%">操作</th>
+      </tr>
+      <% for (let i = 0;i < lists.length;i++) {%>
+      <tr>
+        <td>
+          <%= lists[i]['cid']%>
+        </td>
+        <td>
+          <%= lists[i]['cname']%>
+        </td>
+        <td>
+          <%= lists[i]['cicon']%>
+        </td>
+        <td>
+          <%= lists[i]['clas']%>
+        </td>
+        <td>
+          <div class="button-group">
+            <a class="button border-main" href="/admin/cate/edicate?cid=<%= lists[i]['cid']%>"><span class="icon-edit"></span> 修改</a>
+            <a class="button border-red" href="/admin/cate/delecate?cid=<%= lists[i]['cid']%>"><span class="icon-trash-o"></span> 删除</a>
+          </div>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+</div>

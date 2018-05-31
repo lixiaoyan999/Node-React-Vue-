@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        function fn(props) {
+            return <h1>{props.name}</h1>
+        }
+        class Welcom extends React.Component{
+            render(){
+                return <h1>这是Welcom {this.props.name}</h1>
+            }
+        }
+        // ReactDOM.render(<hello name="zhangsan" age="18"/>,document.querySelector('#app'))
+        ReactDOM.render(<Welcom name="zhangsan" age="18"/>,document.querySelector('#app'))
+    </script>
+</body>
+</html>

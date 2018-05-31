@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Clock extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    number : 10,
+                }
+            }
+            componentWillMount(){
+                console.log("1 componentWillMount");
+            }
+            handleClick = () => {
+                this.setState(
+                    { number:this.state.number + 1}
+                )
+            };
+            handleDelete = () =>{
+                ReactDOM.unmountComponentAtNode(document.querySelector('#app'));
+            };
+            render(){
+                console.log("2 render");
+                return <div>
+                    <p>{this.state.number}</p>
+                    <button onClick={this.handleClick}> + </button>
+                    <button onClick={this.handleDelete}> delete </button>
+                    <Son num={this.state.number}/>
+                </div>
+            }
+            componentDidMount(){
+                console.log("3 componentDidMount");
+            }
+            shouldComponentUpdate(nextProps,nextState){
+                console.log("5   状态应该更新");
+                console.log(nextState);
+                return true;
+                // return false;
+            }
+            componentWillUpdate(prevProps,prevState){
+                console.log("6 状态更新");
+                console.log(prevState);
+            }
+            componentDidUpdate(){
+                console.log("7 更新完成");
+            }
+            componentWillUnmount(){
+                console.log("渲染失败")
+            }
+        }
+        class Son extends React.Component{
+            render(){
+                return <p style={{width:'300px',height:"50px",border:"1px solid blue",lineHeight:"50px",marginTop:"10px"}}>{this.props.num}</p>
+            }
+            componentWillReceiveProps(nextProps,nextState){
+                console.log("4 props更新");
+            }
+        }
+        ReactDOM.render(
+            <Clock />,
+            document.querySelector('#app')
+        )
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Hello APP</h1>
+    <P>
+        <router-link to="/manage">管理员</router-link>
+        <router-link to="/teacher">教师</router-link>
+        <router-link to="/student/:1">学生1</router-link>
+        <router-link to="/student/:2">学生2</router-link>
+    </P>
+    <router-view></router-view>
+</div>
+</body>
+
+<script>
+    /* 1. 定义（路由）组件。 */
+    const manage = {template:'<div>这是管理员组件</div>'};
+    const teacher = {template:'<div>这是教师组件</div>'};
+    const student = {template:'<div>这是学生组件{{ $route.params.id }}</div>'};
+    /* 2. 定义路由 */
+    const routers = [
+        {path:'/manage',component:manage},
+        {path:'/teacher',component:teacher},
+        {path:'/student/:id',component:student}
+    ];
+    /* 3. 创建 router 实例，然后传 `routes` 配置 */
+    const router = new VueRouter({
+        routes:routers
+    });
+    /* 4. 创建和挂载根实例。 */
+    const app = new Vue({
+        el:'#app',
+        router
+    })
+</script>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/vue.js"></script>
+</head>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    #app{
+        width: 100%;
+        height: 100%;
+    }
+    section{
+        width: 100%;
+        height: calc(100% - 70px);
+        position: relative;
+    }
+    section .list{
+        width: 300px;
+        height: 240px;
+        position: absolute;
+        font-size: 18px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        border: 1px solid #000000;
+    }
+    section .list h3{
+        padding: 5px;
+        margin:0;
+        background: #845538;
+        text-align: center;
+    }
+    section .list textarea{
+        resize: none;
+        border: none;
+        outline: none;
+        flex: 1;
+        width: 100%;
+        color: #5f3c23;
+    }
+    span{
+        float: right;
+    }
+    .form-control{
+        width: 200px;
+        height: 45px;
+    }
+</style>
+<body>
+    <div id="app" >
+        <div class="navbar navbar-default" style="padding:20px 20px 0 20px;">
+            <form>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" style="display: inline-block;" v-model="search" >
+                <select class="form-control" style="display: inline-block; margin-left: 20px" v-model="type">
+                    <option :value="item" v-for="item in typearr">
+                        {{item}}
+                    </option>
+                </select>
+            </div>
+            </form>
+        </div>
+        <section @dblclick="add($event)">
+            <my-component v-for="note in arr" :item="note" :key="note.id" @mychange="save" @myremove="del"></my-component>
+        </section>
+    </div>
+</body>
+</html>
+<script>
+     Vue.component('my-component',{
+        template:`<div class="list" :style="{top:msg.y + 'px',left:msg.x + 'px',borderColor:msg.color}">
+                       <h3 :style="{background:msg.color}">
+                            {{msg.type}}
+                            <span @click="remove">x</span>
+                       </h3>
+                        <textarea v-model="msg.content"></textarea>
+                   </div>`,
+         props:['item'],
+         data:function () {
+             return{
+                 msg:Object.assign({},this.item)  //拷贝(目标对象,源对象)
+             }
+         },
+         methods:{
+            remove:function(){
+                this.$emit('myremove',this.msg.id);
+            }
+         },
+         watch:{
+            'msg':{
+                handler:function (newv) {
+                    this.$emit('mychange',newv)
+                },
+                deep:true
+            }
+         }
+     });
+     new Vue({
+         el:'#app',
+         data:{
+             notes:[],
+             lastid:3,
+             search:'',
+             type:'',
+             typearr:['life','study','job'],
+             colorarr:['#fcaf17','#a3cf62','#afb4db']
+         },
+         computed:{
+             arr:function () {
+                 let newarr = this.notes.filter(element=>element.content.includes(this.search) && element.type.includes(this.type));
+                 return newarr;
+             }
+         },
+         methods:{
+             add(ele){
+                 let node = {};
+                 node.id = ++this.lastid;
+                 node.type=this.typearr[Math.floor(Math.random()*this.typearr.length)];
+                 node.content= '';
+                 // node.color= this.colorarr[Math.floor(Math.random()*this.colorarr.length)];
+                 node.color = 'rgb('+Math.floor(Math.random()*200+50)+','
+                     +Math.floor(Math.random()*200+50)+','
+                     +Math.floor(Math.random()*200+50)+')';
+                 node.x= ele.offsetX;
+                 node.y=ele.offsetY;
+                 this.notes.push(node);
+             },
+             del:function(id){
+                 this.notes = this.notes.filter(ele=>ele.id!=id);
+             },
+             save:function(obj){
+                 this.notes.forEach(ele=>{
+                     if(ele.id == obj.id){
+                         ele.content = obj.content;
+                     }
+                 })
+             }
+         },
+         created: function () {
+             let arr = [
+                 {id:1,type:'life',content:'把日子过得好糟糕',color:'#fcaf17',x:100,y:100},
+                 {id:2,type:'study',content:'听不懂，好烦',color:'#a3cf62',x:350,y:200},
+                 {id:3,type:'job',content:'工作也好辛苦',color:'#afb4db',x:600,y:300}
+             ];
+             this.notes = localStorage.notes ? JSON.parse(localStorage.notes) : arr;
+             this.lastid = this.notes[this.notes.length-1].id;
+         },
+         watch:{
+             'notes':{
+                 handler: function(newv){
+                     localStorage.notes = JSON.stringify(this.notes);
+                 },
+                 deep:true
+             }
+         }
+     })
+</script>
